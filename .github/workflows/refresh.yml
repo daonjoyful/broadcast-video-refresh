@@ -2,7 +2,7 @@ name: Refresh public broadcast video data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '28 * * * *'
 permissions:
   contents: write
 concurrency:
