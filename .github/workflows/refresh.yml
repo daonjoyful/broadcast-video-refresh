@@ -1,0 +1,20 @@
+name: Refresh public broadcast video data
+on:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: broadcast-video-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh shared video data
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          REFRESH_SECRET: ${{ secrets.REFRESH_SECRET }}
+        run: node run.mjs
