@@ -1,5 +1,6 @@
 name: Refresh public broadcast video data
 on:
+  workflow_dispatch:
   schedule:
     - cron: '17 * * * *'
 permissions:
