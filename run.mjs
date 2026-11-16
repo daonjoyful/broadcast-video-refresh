@@ -29,4 +29,6 @@ const refreshed = await fetch(site + '/api/scheduled-video-refresh', {
   body: JSON.stringify({ item: item && { title: item.title, channel: item.channel }, day: reservation.state.day, searchesReserved: reservation.state.used })
 });
 if (!refreshed.ok) throw new Error(`Video refresh failed (${refreshed.status})`);
+const outcome = await refreshed.json();
+if (!outcome.refreshed) throw new Error('YouTube feed was unavailable; previous data was retained');
 console.log('Scheduled refresh completed');
